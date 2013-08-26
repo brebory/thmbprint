@@ -5,7 +5,13 @@ Launchpad Profiles is an application for students to build a professional skills
 
 The application also provides ways for students to organize a portfolio of various professional skills, from writing, to design and art, to leadership and networking. They can share their progress on several connected social networks, such as Twitter and Facebook.
 
-### Setup and Build Process ###
+## Table of Contents ##
+
+1. [Setup and Build Process](#setup)
+2. [Development Process (Backend)](#backend)
+3. [Development Process (Frontend)](#frontend)
+
+## <a id="setup"></a>Setup and Build Process ##
 
 1. Install [python 2](http://www.python.org/getit/) if it's not already on your machine. Install pip, setuptools, and virtualenv. `easy_install setuptools`, `easy_install pip`, `pip install virtualenv`, in that order.
 2. Clone the [project](https://github.com/brebory/launchpad-profiles) and set up a virtualenv in the project directory. `virtualenv env --no-site-packages`
@@ -14,6 +20,8 @@ The application also provides ways for students to organize a portfolio of vario
 5. Set up the database. In development, `sqlite3` is used. In production, `postgresql` is used. Run `python manage.py syncdb` for the initial database setup, and then migrate all required apps. `syncdb` will tell you which apps need to be migrated with `python manage.py migrate [appname]`. 
 6. Run the application with `python manage.py runserver`.
 7. Return to your normal development environment with `deactivate`.
+
+## <a id="backend"></a>Development Process (Backend) ##
 
 ### Git Branching Model and Development Process ###
 
@@ -25,9 +33,15 @@ The application also provides ways for students to organize a portfolio of vario
 
 We'll be using Github Issues as our management system for code reviews and bug tracking. Participate in the discussion around each issue to raise any questions and concerns you may have about specific features or to discuss bugfixes.
 
+## <a id="frontend"></a>Development Process (Frontend) ##
+
+### SCSS and Compass ###
+
+[Sass](http://sass-lang.com/) and [Compass](http://compass-style.org/) are reccomended for front-end development. They require [ruby](http://www.ruby-lang.org/en/) to be installed. You can get them with the rubygems package manager after installing ruby. Run `gem install sass` and `gem install compass` to get started.
+
 ### Design Contacts ###
 
-Signum Design is handling the design and illustration assets involved. Try to use CSS to style as much as possible, without resorting to background images. Any illustrations needed should be submitted as a work request to Kate for Signum to complete.
+Signum Design is handling the design and illustration assets involved. Try to use pure CSS to style as much as possible, without resorting to background images. Any illustrations needed should be submitted as a work request to Kate for Signum to complete.
 
 * Kate's email: [kharmon9@kent.edu](mailto:kharmon9@kent.edu)
 * Signum's email: [signumdesignksu@gmail.com](mailto:signumdesignksu@gmail.com)
