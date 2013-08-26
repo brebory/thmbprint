@@ -26,5 +26,5 @@ We'll be using Github Issues as our management system for code reviews and bug t
 
 Signum Design is handling the design and illustration assets involved. Try to use CSS to style as much as possible, without resorting to background images. Any illustrations needed should be submitted as a work request to Kate for Signum to complete.
 
-Kate's email: [kharmon9@kent.edu](mailto:kharmon9@kent.edu)
-Signum's email: [signumdesignksu@gmail.com](mailto:signumdesignksu@gmail.com)
+* Kate's email: [kharmon9@kent.edu](mailto:kharmon9@kent.edu)
+* Signum's email: [signumdesignksu@gmail.com](mailto:signumdesignksu@gmail.com)
