@@ -7,11 +7,11 @@ The application also provides ways for students to organize a portfolio of vario
 
 ## Table of Contents ##
 
-1. [Setup and Build Process](#setup)
-2. [Development Process (Backend)](#backend)
-3. [Development Process (Frontend)](#frontend)
+1. [Setup and Build Process](#setup-and-build-process)
+2. [Development Process (Backend)](#development-process-backend)
+3. [Development Process (Frontend)](#development-process-frontend)
 
-## <a id="setup"></a>Setup and Build Process ##
+## Setup and Build Process ##
 
 1. Install [python 2](http://www.python.org/getit/) if it's not already on your machine. Install pip, setuptools, and virtualenv. `easy_install setuptools`, `easy_install pip`, `pip install virtualenv`, in that order.
 2. Clone the [project](https://github.com/brebory/launchpad-profiles) and set up a virtualenv in the project directory. `virtualenv env --no-site-packages`
@@ -21,7 +21,7 @@ The application also provides ways for students to organize a portfolio of vario
 6. Run the application with `python manage.py runserver`.
 7. Return to your normal development environment with `deactivate`.
 
-## <a id="backend"></a>Development Process (Backend) ##
+## Development Process (Backend) ##
 
 ### Git Branching Model and Development Process ###
 
@@ -33,7 +33,7 @@ The application also provides ways for students to organize a portfolio of vario
 
 We'll be using Github Issues as our management system for code reviews and bug tracking. Participate in the discussion around each issue to raise any questions and concerns you may have about specific features or to discuss bugfixes.
 
-## <a id="frontend"></a>Development Process (Frontend) ##
+## Development Process (Frontend) ##
 
 ### SCSS and Compass ###
 
