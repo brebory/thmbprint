@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     # url(r'^LaunchpadProfiles/', include('LaunchpadProfiles.foo.urls')),
     url(r'^$', 'LaunchpadProfiles.views.home', name='home'),
     url(r'^user/$', include('profiles.urls')),
-    url(r'^badges/$', incldue('badges.urls')),
+    url(r'^badges/$', include('badges.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

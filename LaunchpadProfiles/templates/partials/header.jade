@@ -1,0 +1,19 @@
+{% load admin_urls %}
+nav.top-bar
+  ul.title-area
+    li.name
+      h1: a(href="{% url 'LaunchpadProfiles.views.home' %}")Launchpad Profiles
+      li.toggle-topbar.menu-icon: a(href="#"): span Menu
+
+  section.top-bar-section
+    ul.right
+      li.divider
+      li: a(href="{% url 'profiles.views.dashboard' user.id %}")
+      li.divider
+      li: a(href="{% url 'LaunchpadProfiles.views.about' %}")
+      li.divider
+      li: a(href="{% url 'LaunchpadProfiles.views.support' %}")
+      {% if user.is_staff %}
+      li.divider
+      li: a(href="{% url opts|admin_urlname:'index' %}")
+      {% endif %}

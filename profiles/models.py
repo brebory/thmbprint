@@ -6,17 +6,17 @@ def generate_upload_path(instance, filename):
     return '/'.join('content', instance.project_item.project.profile.username)
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     email = models.EmailField(unique=True)
     username = models.CharField(unique=True, max_length=20)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
 
 class StudentUser(models.Model):
-    profile = models.ForeignKey(UserProfile)
+    profile = models.ForeignKey(UserProfile, unique=True, null=True, blank=True)
 
 class MentorUser(models.Model):
-    profile = models.ForeignKey(UserProfile)
+    profile = models.ForeignKey(UserProfile, unique=True, null=True, blank=True)
 
 class Project(models.Model):
     profile = models.ForeignKey(UserProfile)
