@@ -2,7 +2,7 @@ from django.db import models
 from profiles.models import UserProfile
 
 class Badge(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=100)
     description = models.TextField()
     users_set = models.ManyToManyField(UserProfile)
-    image_data = models.ImageField()
+    image_data = models.ImageField(upload_to='/badges')
