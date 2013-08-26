@@ -1,6 +1,6 @@
 from django.contrib import admin
 from profiles.models import UserProfile, StudentUser, MentorUser
-from profiles.models import Project, ProjectItem, ProjectItemFile,
+from profiles.models import Project, ProjectItem, ProjectItemFile
 from profiles.models import ProjectItemImage, Recommendation
 
 admin.site.register(UserProfile)
