@@ -7,20 +7,23 @@ The application also provides ways for students to organize a portfolio of vario
 
 ### Setup and Build Process ###
 
-1. Clone the [project](https://github.com/brebory/launchpad-profiles) and set up a virtualenv in the project directory. `virtualenv env --no-site-packages`
-2. Use the newly created virtualenv to install all dependencies. `source env/bin/activate` then `pip install -r requirements.txt` Pip will download and install all required dependencies into your virtual environment.
-3. Set up the database. In development, `sqlite3` is used. In production, `postgresql` is used. Run `python manage.py syncdb` for the initial database setup, and then migrate all required apps. `syncdb` will tell you which apps need to be migrated with `python manage.py migrate [appname]`. 
-4. Run the application with `python manage.py runserver`
+1. Install [python 2](http://www.python.org/getit/) if it's not already on your machine. Install pip, setuptools, and virtualenv. `easy_install setuptools`, `easy_install pip`, `pip install virtualenv`, in that order.
+2. Clone the [project](https://github.com/brebory/launchpad-profiles) and set up a virtualenv in the project directory. `virtualenv env --no-site-packages`
+3. Use the newly created virtualenv to install all dependencies. `source env/bin/activate` then `pip install -r requirements.txt` Pip will download and install all required dependencies into your virtual environment.
+4. Set up environment variables.`export LOCAL_DEV=1`, `export DJANGO_SECRET_KEY={secret key}` (Set the secret key to a strong, long password.) It's recommended to write a bash script to handle this for you.
+5. Set up the database. In development, `sqlite3` is used. In production, `postgresql` is used. Run `python manage.py syncdb` for the initial database setup, and then migrate all required apps. `syncdb` will tell you which apps need to be migrated with `python manage.py migrate [appname]`. 
+6. Run the application with `python manage.py runserver`.
+7. Return to your normal development environment with `deactivate`.
 
 ### Git Branching Model and Development Process ###
 
-Always create a feature branch to work on new features. `git checkout -tb [feature-branch-name]` 
-Do not work directly on master or develop. Merge branches back in to develop once they're in a stable state for testing. Merge develop back into master once sufficient testing is done on develop.
-Write unit tests! Use the `unittest` module to make sure that all aspects of features are working before you merge back into develop.
+* Always create a feature branch to work on new features. `git checkout -tb [feature-branch-name]` 
+* Do not work directly on master or develop. Merge branches back in to develop once they're in a stable state for testing. Merge develop back into master once sufficient testing is done on develop.
+* Write unit tests! Use the `unittest` module to make sure that all aspects of features are working before you merge back into develop.
 
 ### Issues and Code Review ###
 
-We'll be using Github Issues as our management system for code reviews and bug tracking. Participate in the discussion around each issues to raise any questions and concerns you may have about specific features or to discuss bugfixes.
+We'll be using Github Issues as our management system for code reviews and bug tracking. Participate in the discussion around each issue to raise any questions and concerns you may have about specific features or to discuss bugfixes.
 
 ### Design Contacts ###
 
