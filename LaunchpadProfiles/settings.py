@@ -82,7 +82,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(SITE_ROOT, '..', '/assets') 
+    os.path.join(SITE_ROOT, '..', 'assets'),
 )
 
 # List of finder classes that know how to find static files in
@@ -128,6 +128,7 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
     "django.contrib.auth.context_processors.auth",
 )
 

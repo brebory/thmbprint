@@ -8,12 +8,18 @@ nav.top-bar
   section.top-bar-section
     ul.right
       li.divider
-      li: a(href="{% url 'profiles.views.dashboard' user.id %}")
+      {% if user.is_authenticated %}
+      li: a(href="{% url 'dashboard' user.id %}") Dashboard
+      {% else %}
+      li: a(href="{% url 'login' %}") Login
       li.divider
-      li: a(href="{% url 'LaunchpadProfiles.views.about' %}")
+      li: a(href="{% url 'register' %}") Signup
+      {% endif %}
       li.divider
-      li: a(href="{% url 'LaunchpadProfiles.views.support' %}")
+      li: a(href="{% url 'about' %}") About
+      li.divider
+      li: a(href="{% url 'support' %}") Support
       {% if user.is_staff %}
       li.divider
-      li: a(href="{% url opts|admin_urlname:'index' %}")
+      li: a(href="{% url opts|admin_urlname:'index' %}") Admin
       {% endif %}

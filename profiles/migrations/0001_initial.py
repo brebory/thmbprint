@@ -11,25 +11,21 @@ class Migration(SchemaMigration):
         # Adding model 'UserProfile'
         db.create_table(u'profiles_userprofile', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('email', self.gf('django.db.models.fields.EmailField')(unique=True, max_length=75)),
-            ('username', self.gf('django.db.models.fields.CharField')(unique=True, max_length=20)),
-            ('first_name', self.gf('django.db.models.fields.CharField')(max_length=20)),
-            ('last_name', self.gf('django.db.models.fields.CharField')(max_length=20)),
+            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
         ))
         db.send_create_signal(u'profiles', ['UserProfile'])
 
         # Adding model 'StudentUser'
         db.create_table(u'profiles_studentuser', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('profile', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['profiles.UserProfile'])),
+            ('profile', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='student_profile', unique=True, null=True, to=orm['profiles.UserProfile'])),
         ))
         db.send_create_signal(u'profiles', ['StudentUser'])
 
         # Adding model 'MentorUser'
         db.create_table(u'profiles_mentoruser', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('profile', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['profiles.UserProfile'])),
+            ('profile', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='mentor_profile', unique=True, null=True, to=orm['profiles.UserProfile'])),
         ))
         db.send_create_signal(u'profiles', ['MentorUser'])
 
@@ -148,7 +144,7 @@ class Migration(SchemaMigration):
         u'profiles.mentoruser': {
             'Meta': {'object_name': 'MentorUser'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['profiles.UserProfile']"})
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'mentor_profile'", 'unique': 'True', 'null': 'True', 'to': u"orm['profiles.UserProfile']"})
         },
         u'profiles.project': {
             'Meta': {'object_name': 'Project'},
@@ -191,16 +187,12 @@ class Migration(SchemaMigration):
         u'profiles.studentuser': {
             'Meta': {'object_name': 'StudentUser'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'profile': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['profiles.UserProfile']"})
+            'profile': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'student_profile'", 'unique': 'True', 'null': 'True', 'to': u"orm['profiles.UserProfile']"})
         },
         u'profiles.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
-            'email': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '75'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
-            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20'})
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         }
     }
 
