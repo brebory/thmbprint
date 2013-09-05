@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.context_processors import csrf
 from profiles.models import UserProfile, StudentUser, MentorUser
 from profiles.models import Project, ProjectItem
 from profiles.models import ProjectItemImage, ProjectItemFile, Recommendation
@@ -36,12 +37,12 @@ def create_project(request, user_id):
     c = { "form": form }
     return render(request, "create_project.jade", c)
 
-def project_detail(request, user_id, project_id):
-    profile = get_object_or_404(UserProfile, user=user_id)
+def project_detail(request, project_id):
+    profile = get_object_or_404(UserProfile, user=request.user.pk)
     project = get_object_or_404(Project, pk=project_id)
     c = { "profile": profile,
-          "project": project,
-          "editable": (project in profile.project_set) }
+          "project": project }
+    return render(request, "project_detail.jade", c)
 
 def edit_project(request, user_id, project_id):
     profile = get_object_or_404(UserProfile, user=user_id)
@@ -51,11 +52,15 @@ def edit_project(request, user_id, project_id):
         if form.is_valid():
             project.save()
             return redirect(
-                    'project_detail', 
-                    user_id=user_id,
-                    profile_id=profile_id
+                    'profiles:project_detail',
+                    project_id=project_id
             )
     else:
         form = ProjectForm(instance=project)
-    c = { "form": form }
+    c = {
+            "form": form,
+            "project": project,
+            "profile": profile
+    }
+    c.update(csrf(request))
     return render(request, "edit_project.jade", c)

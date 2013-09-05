@@ -13,7 +13,7 @@ urlpatterns = patterns('profiles.views',
             name='create_project'
         ),
         url(
-            r'(?P<user_id>\d+)/project/(?P<project_id>\d+)/$',
+            r'project/(?P<project_id>\d+)/$',
             'project_detail',
             name='project_detail'
         ),

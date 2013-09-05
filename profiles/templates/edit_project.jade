@@ -1,0 +1,7 @@
+extends base
+block content
+  .row
+    form(method="POST", action="{% url 'profiles:edit_project' profile.pk project.pk %}")
+      {% csrf_token %}
+      {{ form.as_p }}
+      input.button(type="submit", value="submit")
