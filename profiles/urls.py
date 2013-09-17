@@ -3,12 +3,12 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('profiles.views',
         url(r'dashboard/$', 'dashboard', name='dashboard'),
         url(
-            r'(?P<user_id>\d+)/project/$', 
+            r'project/$', 
             'list_user_projects',
             name='list_user_projects'
         ),
         url(
-            r'(?P<user_id>\d+)/project/create/$',
+            r'project/create/$',
             'create_project',
             name='create_project'
         ),
@@ -18,7 +18,7 @@ urlpatterns = patterns('profiles.views',
             name='project_detail'
         ),
         url(
-            r'(?P<user_id>\d+)/project/(?P<project_id>\d+)/edit/$',
+            r'project/(?P<project_id>\d+)/edit/$',
             'edit_project',
             name='edit_project'
         ),

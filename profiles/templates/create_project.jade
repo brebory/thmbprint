@@ -1,7 +1,7 @@
 extends base
 block content
   .row
-    form(method="POST", action="{% url 'profiles:edit_project' project.pk %}")
+    form(method="POST", action="{% url 'profiles:create_project' %}")
       {% csrf_token %}
       {{ form.as_p }}
       input.button(type="submit", value="submit")

@@ -13,15 +13,15 @@ def dashboard(request):
     c = { "profile": profile, "projects": projects }
     return render(request, 'dashboard.jade', c)
 
-def list_user_projects(request, user_id):
-    profile = get_object_or_404(UserProfile, user=user_id)
+def list_user_projects(request):
+    profile = get_object_or_404(UserProfile, user=request.user.pk)
     projects = profile.project_set
     c = {"profile": profile, "projects": projects}
     return render(request, 'list_projects.jade', c)
 
-def create_project(request, user_id):
+def create_project(request):
     if request.method == 'POST':
-        profile = get_object_or_404(UserProfile, user=user_id)
+        profile = get_object_or_404(UserProfile, user=request.user.pk)
         form = ProjectForm(request.POST)
         if form.is_valid():
             project = Project(
@@ -44,8 +44,8 @@ def project_detail(request, project_id):
           "project": project }
     return render(request, "project_detail.jade", c)
 
-def edit_project(request, user_id, project_id):
-    profile = get_object_or_404(UserProfile, user=user_id)
+def edit_project(request, project_id):
+    profile = get_object_or_404(UserProfile, user=request.user.pk)
     project = get_object_or_404(Project, pk=project_id)
     if request.method == 'POST':
         form = ProjectForm(request.POST, instance=project)

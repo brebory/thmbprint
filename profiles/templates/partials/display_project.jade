@@ -3,7 +3,7 @@ section.ui-project-detail
     h1 {{ project.name }}
     p start: {{ project.start_date }} end: {{ project.end_date }}
     p {{ project.description }}
-    button.ui-project-detail-edit-button: a(href="{% url 'profiles:edit_project' profile.pk project.pk %}", style="color:white;") edit
+    button.ui-project-detail-edit-button: a(href="{% url 'profiles:edit_project' project.pk %}") edit
     {% for projectitem in project.projectitem_set.all %}
     article.ui-project-detail-body
       p {{ projectitem.name }}

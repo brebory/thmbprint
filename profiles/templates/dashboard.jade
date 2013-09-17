@@ -4,3 +4,4 @@ block content
     {% for project in projects %}
     include partials/display_project
     {% endfor %}
+    button.ui-dashboard-project-create-button: a(href="{% url 'profiles:create_project' %}") Create Project

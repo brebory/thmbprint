@@ -1,0 +1,56 @@
+{
+  "pk": 1, 
+  "model": "profiles.studentuser", 
+  "fields": {
+    "profile": 1
+  }
+},
+{
+  "pk": 1, 
+  "model": "profiles.project", 
+  "fields": {
+    "profile": 1, 
+    "start_date": "2013-08-26", 
+    "name": "Test Project #1", 
+    "end_date": "2013-08-27", 
+    "description": "This is a test project to make sure everything works. This is a test of editing projects!"
+  }
+},
+{
+  "pk": 2, 
+  "model": "profiles.project", 
+  "fields": {
+    "profile": 1, 
+    "start_date": "2013-09-03", 
+    "name": "Test Project #2", 
+    "end_date": "2013-09-03", 
+    "description": "This is another test project that is almost as cool and awesome as the first one!"
+  }
+},
+{
+  "pk": 1, 
+  "model": "profiles.projectitem", 
+  "fields": {
+    "project": 1, 
+    "name": "ProjectItem #1", 
+    "description": "This is a test project item purely for testing purposes. It resides within Project 1."
+  }
+},
+{
+  "pk": 2, 
+  "model": "profiles.projectitem", 
+  "fields": {
+    "project": 1, 
+    "name": "ProjectItem #2", 
+    "description": "This is a second ProjectItem, that is just as much of a test as the first one is."
+  }
+}, 
+{
+  "pk": 3, 
+  "model": "profiles.projectitem", 
+  "fields": {
+    "project": 2, 
+    "name": "ProjectItem #3", 
+    "description": "This is another test projectitem!"
+  }
+}
