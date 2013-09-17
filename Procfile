@@ -1,1 +1,1 @@
-web: gunicorn LaunchpadProfiles.wsgi
+web: python manage.py collectstatic --noinput; gunicorn LaunchpadProfiles.wsgi
