@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 
 from django.contrib import admin
 admin.autodiscover()
@@ -14,3 +15,9 @@ urlpatterns = patterns('',
     url(r'^badges/', include('badges.urls', namespace='badges', app_name='badges')),
     url(r'^admin/', include(admin.site.urls)),
 )
+
+if not settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.contrib.staticfiles.views',
+            {'document_root': settings.STATIC_ROOT}),
+    )
