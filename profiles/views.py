@@ -19,19 +19,14 @@ def list_user_projects(request):
     c = {"profile": profile, "projects": projects}
     return render(request, 'list_projects.jade', c)
 
+@login_required
 def create_project(request):
     if request.method == 'POST':
         profile = get_object_or_404(UserProfile, user=request.user.pk)
         form = ProjectForm(request.POST)
         if form.is_valid():
-            project = Project(
-                    profile=profile.pk,
-                    name=form.name,
-                    description=form.description,
-                    start_date=form.start_date,
-                    end_date=form.end_date
-            )
-            project.save()
+            form.save()
+            return redirect('profiles:dashboard')
     else:
         form = ProjectForm()
     c = { "form": form }
@@ -44,13 +39,14 @@ def project_detail(request, project_id):
           "project": project }
     return render(request, "project_detail.jade", c)
 
+@login_required
 def edit_project(request, project_id):
     profile = get_object_or_404(UserProfile, user=request.user.pk)
     project = get_object_or_404(Project, pk=project_id)
     if request.method == 'POST':
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
-            project.save()
+            form.save()
             return redirect(
                     'profiles:project_detail',
                     project_id=project_id
