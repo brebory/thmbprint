@@ -2,9 +2,15 @@ from django.shortcuts import render
 from badges.models import Badge
 
 def list_badges(request):
+    """
+    Renders a page that lists all badges in the system.
+    """
     return render(request, 'badges_list.jade')
 
 def badge_detail(request, badge_id):
-   badge = Badge.objects.get(pk=badge_id) 
-   c = { 'badge': badge }
-   return render(request, 'badge_detail.jade', c)
+    """
+    Renders a badge-specific page with details about that badge.
+    """
+    badge = Badge.objects.get(pk=badge_id) 
+    c = { 'badge': badge }
+    return render(request, 'badge_detail.jade', c)

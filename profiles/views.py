@@ -5,6 +5,8 @@ from profiles.models import UserProfile, StudentUser, MentorUser
 from profiles.models import Project, ProjectItem
 from profiles.models import ProjectItemImage, ProjectItemFile, Recommendation
 from profiles.forms import ProjectForm
+import urllib
+import urllib2
 
 @login_required
 def dashboard(request):
@@ -60,3 +62,25 @@ def edit_project(request, project_id):
     }
     c.update(csrf(request))
     return render(request, "edit_project.jade", c)
+
+def get_badges(user):
+    """ 
+    Returns the user's mozilla open badges
+    """
+    badges = []
+    url = "http://beta.openbadges.org/displayer/convert/email"
+    values = { 'email': user.email }
+    data = urllib.urlencode(values)
+    result = urllib2.urlopen(url, data)
+    if result.status == "okay":
+        url = "http://beta.openbadges.org/displayer/%s/groups.json" % result.userId
+        result = urllib2.urlopen(url)
+        if result.groups:
+            for group in result.groups:
+                url = "http://beta.openbadges.org/displayer/%s/groups/:wq"
+
+    else:
+        badges = [{ "error": "couldn't open user's badge backpack" }]
+
+
+
