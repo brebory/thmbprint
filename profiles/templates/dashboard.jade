@@ -1,6 +1,11 @@
 extends base
 block content
   .row
+    h1 Achievements
+    {% for achievement in achievements %}
+    p {{ achievement.achievement.name }}
+    p {{ achievement.achievement.description }}
+    {% endfor %}
     {% for project in projects %}
     include partials/display_project
     {% endfor %}

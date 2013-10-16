@@ -116,6 +116,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'achievements.middleware.AutoAchievementChecker',
 )
 
 ROOT_URLCONF = 'LaunchpadProfiles.urls'
@@ -149,6 +150,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'achievements',
     'profiles',
     'badges',
 )
@@ -183,3 +185,7 @@ LOGGING = {
 }
 
 APPEND_SLASHES = True
+
+# Achievements configuration
+ACHIEVEMENT_CLASSES = ['profiles.profiles_achievements']
+ACHIEVMENT_MIDDLEWARE_REQUEST_METHODS = ['get', 'post', 'put', 'delete']

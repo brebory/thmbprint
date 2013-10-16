@@ -4,15 +4,25 @@ from django.core.context_processors import csrf
 from profiles.models import UserProfile, StudentUser, MentorUser
 from profiles.models import Project, ProjectItem
 from profiles.models import ProjectItemImage, ProjectItemFile, Recommendation
-from profiles.forms import ProjectForm
+from profiles.forms import ProjectForm, ProjectItemFormset
+from achievements.engine import engine
+from achievements.models import Achievement
 import urllib
 import urllib2
 
 @login_required
 def dashboard(request):
+    # EXTREMELY HACKY WAY OF FORCING ACHIEVEMENT CHECKS ON DASHBOARD VIEW!
+    for achievement in Achievement.objects.all():
+        engine.check_achievement(user = request.user, key = achievement.key)
+    # ENDHACK
     profile = get_object_or_404(UserProfile, user=request.user.pk)
     projects = Project.objects.filter(profile=profile)
-    c = { "profile": profile, "projects": projects }
+    c = {
+            "profile": profile,
+            "projects": projects,
+            "achievements": request.user.userachievement_set.all()
+    }
     return render(request, 'dashboard.jade', c)
 
 def list_user_projects(request):
