@@ -27,7 +27,9 @@ def create_project(request):
         profile = get_object_or_404(UserProfile, user=request.user.pk)
         form = ProjectForm(request.POST)
         if form.is_valid():
-            form.save()
+            project = form.save(commit = False)
+            project.profile = profile
+            project.save()
             return redirect('profiles:dashboard')
     else:
         form = ProjectForm()
@@ -47,16 +49,20 @@ def edit_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.method == 'POST':
         form = ProjectForm(request.POST, instance=project)
-        if form.is_valid():
+        formset = ProjectItemFormset(request.POST, instance=project)
+        if form.is_valid() and formset.is_valid():
             form.save()
+            formset.save()
             return redirect(
                     'profiles:project_detail',
                     project_id=project_id
             )
     else:
         form = ProjectForm(instance=project)
+        formset = ProjectItemFormset(instance=project)
     c = {
             "form": form,
+            "formset": formset,
             "project": project,
             "profile": profile
     }

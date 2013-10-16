@@ -1,3 +1,11 @@
+[
+{
+  "pk": 1,
+  "model": "profiles.userprofile",
+  "fields": {
+    "user": 1
+  }
+},
 {
   "pk": 1, 
   "model": "profiles.studentuser", 
@@ -54,3 +62,4 @@
     "description": "This is another test projectitem!"
   }
 }
+]

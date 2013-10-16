@@ -4,4 +4,8 @@ block content
     form(method="POST", action="{% url 'profiles:edit_project' project.pk %}")
       {% csrf_token %}
       {{ form.as_p }}
+      {% for fsform in formset %}
+      {{ fsform.as_p }}
+      {% endfor %}
+      {{ formset.management_form }}
       input.button(type="submit", value="submit")

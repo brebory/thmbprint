@@ -1,10 +1,13 @@
 Django==1.5.2
 PIL==1.1.7
+Pygments==1.6
 South==0.8.2
+bpython==0.12
 dj-database-url==0.2.2
 dj-static==0.0.5
 django-achievements==0.1.1
 django-appconf==0.6
+django-registration==1.0
 django-suit==0.2.4
 django-toolbelt==0.0.1
 gunicorn==17.5
