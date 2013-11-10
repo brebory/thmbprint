@@ -6,6 +6,15 @@ nav.top-bar
     li.toggle-topbar.menu-icon: a(href="#"): span Menu
 
   section.top-bar-section
+    ul.left
+      li.divider
+      li: a(href="{% url 'explore' %}") Explore
+      li.divider
+      li: a(href="{% url 'badges:list_badges' %}") Badges
+      li.divider
+      li: a(href="{% url 'resources' %}") Other Resources
+      li.divider
+
     ul.right
       li.divider
       {% if user.is_authenticated %}
