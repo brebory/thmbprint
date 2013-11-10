@@ -1,5 +1,17 @@
 from profiles.models import UserProfile, Project
 
+class DummyAchievement(object):
+    name = "Dummy Achievement"
+    key = "dummy_achievement"
+    description = "This is a default dummy achievement!"
+    bonus = 0
+
+    def evaluate(self, user, *args, **kwargs):
+        """
+        It's impossible to get this achievement, always return False.
+        """
+        return False
+
 class SignUpAchievement(object):
     name = "Signed Up"
     key = "signup"
@@ -8,7 +20,7 @@ class SignUpAchievement(object):
 
     def evaluate(self, user, *args, **kwargs):
         """
-        If the user is registered, they've unlocked this achievement!
+        If the user is registered, they've unlocked this achievement.
         """
         return user.is_authenticated()
     

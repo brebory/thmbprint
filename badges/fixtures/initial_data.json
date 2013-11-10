@@ -1,0 +1,10 @@
+[
+{
+  "pk": 1,
+  "model": "badges.badge",
+  "fields": {
+    "name": "Test Badge",
+    "description": "This badge is a test"
+  }
+}
+]
