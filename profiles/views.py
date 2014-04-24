@@ -1,9 +1,9 @@
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.context_processors import csrf
 from profiles.models import UserProfile, StudentUser, MentorUser
-from profiles.models import Project, ProjectItem
-from profiles.models import ProjectItemImage, ProjectItemFile, Recommendation
+from profiles.models import Project, ProjectItem, Recommendation
 from profiles.forms import ProjectForm, ProjectItemFormset
 from achievements.engine import engine
 from achievements.models import Achievement
@@ -40,10 +40,20 @@ def create_project(request):
             project = form.save(commit = False)
             project.profile = profile
             project.save()
+            formset = ProjectItemFormset(request.POST, instance = project)
+            if formset.is_valid():
+                formset.save()
+            else:
+                # TODO: Handle this more gracefully!
+                raise Http404
             return redirect('profiles:dashboard')
     else:
         form = ProjectForm()
-    c = { "form": form }
+        formset = ProjectItemFormset()
+    c = { 
+            "form": form,
+            "formset": formset
+    }
     return render(request, "create_project.jade", c)
 
 def project_detail(request, project_id):
@@ -59,7 +69,7 @@ def edit_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.method == 'POST':
         form = ProjectForm(request.POST, instance=project)
-        formset = ProjectItemFormset(request.POST, instance=project)
+        formset = ProjectItemFormset(request.POST, request.FILES, instance=project)
         if form.is_valid() and formset.is_valid():
             form.save()
             formset.save()

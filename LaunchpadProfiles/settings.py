@@ -142,6 +142,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 INSTALLED_APPS = (
     'south',
     'suit',
+    'storages',
     'pyjade',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -189,3 +190,9 @@ APPEND_SLASHES = True
 # Achievements configuration
 ACHIEVEMENT_CLASSES = ['profiles.profiles_achievements']
 ACHIEVMENT_MIDDLEWARE_REQUEST_METHODS = ['get', 'post', 'put', 'delete']
+
+# Amazon S3 Settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME = 'thmbprint'
