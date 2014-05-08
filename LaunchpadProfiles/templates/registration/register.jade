@@ -1,6 +1,6 @@
 extends base
 block content
-  form(method="POST", action="{% url 'register' %}")
+  form(method="POST", action="{% url 'register' %}"){% csrf_token %}
     .row
       .small-6.large-6.small-centered.large-centered.columns
         {{ form.as_p }}

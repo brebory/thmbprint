@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
+from profiles.models import UserProfile
 
 
 def home(request):
@@ -45,13 +46,19 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
-            return redirect('dashboard')
+
+            # Create the UserProfile for the new user
+            UserProfile.objects.create(user=new_user)
+
+            return redirect('/user/dashboard/')
     else:
         form = UserCreationForm()
+
+    context = { 'form': form }
+    context.update(csrf(request))
     return render_to_response(
-        request,
         "registration/register.jade",
-        { 'form': form }
+        context
     )
 
 
