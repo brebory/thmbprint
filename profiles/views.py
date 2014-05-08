@@ -40,7 +40,7 @@ def create_project(request):
             project = form.save(commit = False)
             project.profile = profile
             project.save()
-            formset = ProjectItemFormset(request.POST, instance = project)
+            formset = ProjectItemFormset(request.POST, request.FILES, instance = project)
             if formset.is_valid():
                 formset.save()
             else:
