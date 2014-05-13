@@ -4,11 +4,15 @@ section.ui-project-detail
     p start: {{ project.start_date }} end: {{ project.end_date }}
     p {{ project.description }}
     button.ui-project-detail-edit-button: a(href="{% url 'profiles:edit_project' project.pk %}") edit
-  //- {% for projectitem in project.projectitem_set.all %}
-    article.ui-project-detail-body
-      p {{ projectitem.name }}
-      p {{ projectitem.description }}
-      {% if projectitem.attached_file %}
-      img(src={{ projectitem.attached_file.url }})
-      {% endif %}
+  article.ui-project-detail-body
+    {% for projectitem in project.projectitem_set.all %}
+    h1.project-item-title {{ projectitem.name }}
+    p.project-item-description {{ projectitem.description }}
+    {% if projectitem.attached_file %}
+    {% if projectitem.attached_file_extension == 'jpg' %}
+    img.project-item-thumbnail(src="{{ projectitem.attached_file.url }}")
+    {% elif projectitem.attached_file_extension == 'png' %}
+    img.project-item-thumbnail(src="{{projectitem.attached_file.url }}")
+    {% endif %}
+    {% endif %}
     {% endfor %}

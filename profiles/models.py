@@ -1,12 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+import hashlib
+import datetime
 
 def generate_upload_path(instance, filename):
+    # Generate filename by md5 hashing previous filename and the current time
+    filehash = hashlib.md5()
+    filehash.update(instance.name.replace(" ", "-"))
+    filehash.update(str(datetime.datetime.now()))
     return '/'.join(
             ['content', 
              instance.project.profile.user.username,
-             instance.name.replace(" ", "_") + "." +
+             filehash.hexdigest() + "." +
              instance.attached_file_extension]
     )
 
