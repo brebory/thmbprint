@@ -1,0 +1,3 @@
+h1.badge-detail-header: a(href="{{ badge.get_absolute_url }}") {{ badge.name }}
+p.badge-detail-description {{ badge.description }}
+img(src="{{ badge.image_data.url }}", alt="{{ badge.name }}")

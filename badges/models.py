@@ -19,6 +19,11 @@ class Badge(models.Model):
     image_data = models.ImageField(upload_to='badges')
     achievement_key = models.CharField(max_length=50, default='dummy_achievement')
 
+    def get_absolute_url(self):
+        # Returns the absolute url to the object
+        from django.core.urlresolvers import reverse
+        return reverse('badges.views.badge_detail', args=[str(self.id)])
+
     def check_open_badge(self):
         """
         check_open_badge makes sure that this badge is registered with Mozilla

@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response
 from badges.models import Badge
 
 def list_badges(request):
     """
     Renders a page that lists all badges in the system.
     """
-    return render(request, 'badges_list.jade')
+    badges = Badge.objects.all()
+    c = { 'badges': badges }
+    return render_to_response('badge_list.jade', c)
 
 def badge_detail(request, badge_id):
     """
@@ -13,4 +15,4 @@ def badge_detail(request, badge_id):
     """
     badge = Badge.objects.get(pk=badge_id) 
     c = { 'badge': badge }
-    return render(request, 'badge_detail.jade', c)
+    return render_to_response('badge_detail.jade', c)
