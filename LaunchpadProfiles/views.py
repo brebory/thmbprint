@@ -66,10 +66,6 @@ def about(request):
     return HttpResponse("Under Construction")
 
 
-def support(request):
-    return HttpResponse("Under Construction")
-
-
 def explore(request):
     return HttpResponse("Under Construction")
 
