@@ -17,6 +17,17 @@ def generate_upload_path(instance, filename):
     )
 
 class UserProfile(models.Model):
+    """
+    Class UserProfile represents special information about a user beyond the
+    basic information that Django's User model collects. This is abstracted out
+    into a separate class and linked to Django's User model with a
+    OneToOneField relation.
+
+    @property user: The related django.contrib.auth.models.User object
+
+    TODO: Create more useful fields for users to customize, like profile
+    pictures, location information, school/work information, etc.
+    """
 
     user = models.OneToOneField(User)
 
@@ -26,6 +37,15 @@ class UserProfile(models.Model):
         return "unassigned userprofile: %s" % self.pk
 
 class StudentUser(models.Model):
+    """
+    Class StudentUser creates a Student account for the associated UserProfile.
+    Student accounts and mentor accounts have access to different aspects of
+    Thmbprint. As of now, this feature is not implemented.
+
+    @property profile: The related profiles.models.UserProfile object
+
+    TODO: Finish implementing Student vs Mentor users.
+    """
 
     profile = models.ForeignKey(
             UserProfile,
