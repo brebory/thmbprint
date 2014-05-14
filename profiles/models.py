@@ -61,6 +61,8 @@ class Project(models.Model):
     description = models.TextField(blank=True)
     start_date = models.DateField(blank=True)
     end_date = models.DateField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.name
