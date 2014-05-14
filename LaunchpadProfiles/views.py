@@ -63,7 +63,9 @@ def register(request):
 
 
 def about(request):
-    return HttpResponse("Under Construction")
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('about.jade', c, RequestContext(request))
 
 
 def explore(request):
