@@ -4,7 +4,6 @@ section.ui-project-detail
     h2 Created by: {{ project.profile.user.username }}
     p start: {{ project.start_date }} end: {{ project.end_date }}
     p {{ project.description }}
-    button.ui-project-detail-edit-button: a(href="{% url 'profiles:edit_project' project.pk %}") edit
   article.ui-project-detail-body
     {% for projectitem in project.projectitem_set.all %}
     h1.project-item-title {{ projectitem.name }}
