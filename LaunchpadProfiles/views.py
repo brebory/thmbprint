@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-from profiles.models import UserProfile
+from profiles.models import UserProfile, Project
 
 
 def home(request):
@@ -67,6 +67,19 @@ def about(request):
 
 
 def explore(request):
+    """
+    The explore view retrieves all projects from the database and displays them
+    in descending order by date. It is used by users to explore the site and
+    check out other user's projects and profiles.
+    @rtype : HttpResponse
+    @param request: HttpRequest object with request details
+    @return: HttpResponse with the rendered explore.jade template
+    """
+
+    projects = Project.objects.all().order_by('-created_at')
+    c = { 'projects': projects }
+    c.update(csrf(request))
+    return render_to_response('explore.jade', c, RequestContext(request))
     return HttpResponse("Under Construction")
 
 
