@@ -22,4 +22,9 @@ urlpatterns = patterns('profiles.views',
             'edit_project',
             name='edit_project'
         ),
+	url(
+	    r'migrate-achievements/$',
+            'migrate_achievements',
+            name='migrate_achievements'
+        ),
 )
