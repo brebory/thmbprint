@@ -78,7 +78,7 @@ def edit_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
 
     # If the user doesn't own this project, return a 403 response
-    if not profile.project_set.filter(pk=project.pk).exists():
+    if not project.is_owned_by(profile):
         return HttpResponseForbidden("403 - Forbidden")
 
     if request.method == 'POST':

@@ -87,6 +87,9 @@ class Project(models.Model):
     def __unicode__(self):
         return self.name
 
+    def is_owned_by(self, user):
+        return user.project_set.filter(pk=self.pk).exists()
+
 class ProjectItem(models.Model):
     EXTENSION_CHOICES = ( 
             ('doc', 'doc'),
