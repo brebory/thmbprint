@@ -5,6 +5,8 @@ from django.core.context_processors import csrf
 from profiles.models import UserProfile, StudentUser, MentorUser
 from profiles.models import Project, ProjectItem, Recommendation
 from profiles.forms import ProjectForm, ProjectItemFormset
+import badges
+from django.db import models 
 from achievements.engine import engine
 from achievements.models import Achievement
 import urllib
@@ -12,16 +14,18 @@ import urllib2
 
 @login_required
 def dashboard(request):
+    myBadges = badges.models.Badge
     # EXTREMELY HACKY WAY OF FORCING ACHIEVEMENT CHECKS ON DASHBOARD VIEW!
     for achievement in Achievement.objects.all():
-        engine.check_achievement(user = request.user, key = achievement.key)
+        engine.check_achievement(user = request.user, key = achievement.key)  
     # ENDHACK
     profile = get_object_or_404(UserProfile, user=request.user.pk)
     projects = Project.objects.filter(profile=profile)
     c = {
             "profile": profile,
             "projects": projects,
-            "achievements": request.user.userachievement_set.all()
+            "achievements": request.user.userachievement_set.all(),
+            "badges": myBadges.objects.all()
     }
     return render(request, 'dashboard.jade', c)
 
@@ -55,6 +59,10 @@ def create_project(request):
             "formset": formset
     }
     return render(request, "create_project.jade", c)
+
+@login_required
+def migrate_achievements(request):
+    return render(request, "migrate_achievements.jade")
 
 def project_detail(request, project_id):
     profile = get_object_or_404(UserProfile, user=request.user.pk)
