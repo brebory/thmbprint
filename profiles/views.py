@@ -1,7 +1,8 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.context_processors import csrf
+from django.core.exceptions import PermissionDenied
 from profiles.models import UserProfile, StudentUser, MentorUser
 from profiles.models import Project, ProjectItem, Recommendation
 from profiles.forms import ProjectForm, ProjectItemFormset
@@ -75,6 +76,11 @@ def project_detail(request, project_id):
 def edit_project(request, project_id):
     profile = get_object_or_404(UserProfile, user=request.user.pk)
     project = get_object_or_404(Project, pk=project_id)
+
+    # If the user doesn't own this project, return a 403 response
+    if not profile.project_set.filter(pk=project.pk).exists():
+        return HttpResponseForbidden("403 - Forbidden")
+
     if request.method == 'POST':
         form = ProjectForm(request.POST, instance=project)
         formset = ProjectItemFormset(request.POST, request.FILES, instance=project)
