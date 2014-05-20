@@ -6,7 +6,7 @@ block content
     {% for achievement in achievements %}
     p {{ achievement.achievement.name }}
     p {{ achievement.achievement.description }}
-    p {% getbadgeinstance badges achievement.key %}
+    img(src="{% getbadgeurl badges achievement.achievement.key %}", alt="Achievement: {{ achievement.achievement.description }}")
     {% endfor %}
     {% for project in projects %}
     include partials/display_project
