@@ -1,8 +1,23 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.conf import settings
 import hashlib
 import datetime
+
+EXTENSION_CHOICES = (
+    ('pdf', 'pdf'),
+    ('png', 'png'),
+    ('jpg', 'jpg'),
+    ('txt', 'txt')
+)
+
+VALID_EXTENSIONS = (
+    'pdf',
+    'png',
+    'jpg',
+    'txt'
+)
 
 def generate_upload_path(instance, filename):
     # Generate filename by md5 hashing previous filename and the current time
@@ -15,6 +30,14 @@ def generate_upload_path(instance, filename):
              filehash.hexdigest() + "." +
              instance.attached_file_extension]
     )
+
+def validate_file_extension(file_object):
+    extension = file_object.name.split(".")[-1]
+    if extension not in VALID_EXTENSIONS:
+        raise ValidationError(
+            "%s is not a valid extension") % extension,
+            'invalid_extension'
+        )
 
 class UserProfile(models.Model):
     """
@@ -91,25 +114,45 @@ class Project(models.Model):
         return user.project_set.filter(pk=self.pk).exists()
 
 class ProjectItem(models.Model):
-    EXTENSION_CHOICES = ( 
-            ('doc', 'doc'),
-            ('pdf', 'pdf'),
-            ('png', 'png'),
-            ('jpg', 'jpg'),
-            ('txt', 'txt')
-    )
+    """
+    Class ProjectItem represents one part of a project. This can be anything
+    from a text document, to a pdf, to an image, and the user can title
+    these parts as well as give them a short description of the contents.
+
+    @property project: The related Project object
+    @property name: The name of this ProjectItem
+    @property description: A short description of this ProjectItem
+    @property attached_file: The file object to be stored with the ProjectItem
+    @property attached_file_extension: The extension of the attached file
+    """
+
     project = models.ForeignKey(Project)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     attached_file = models.FileField(
+            validators = [validate_file_extension],
             upload_to = generate_upload_path,
             blank = True,
             null = True
     )
+
     attached_file_extension = models.CharField(
             max_length=4,
             choices=EXTENSION_CHOICES
+            blank = True
     )
+
+    def save(self, *args, **kwargs):
+        """
+        Automatically gets the attached_file_extension from the passed in
+        file's name. Removes the need for the user to specify the attached file
+        extension in the ModelForm.
+
+        Overrides the default models.Model save function.
+        """
+
+        attached_file_extension = attached_file.name.split('.')[-1]
+        super(ProjectItem, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
