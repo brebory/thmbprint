@@ -35,7 +35,7 @@ def validate_file_extension(file_object):
     extension = file_object.name.split(".")[-1]
     if extension not in VALID_EXTENSIONS:
         raise ValidationError(
-            "%s is not a valid extension") % extension,
+            "%s is not a valid extension" % extension,
             'invalid_extension'
         )
 
@@ -138,7 +138,7 @@ class ProjectItem(models.Model):
 
     attached_file_extension = models.CharField(
             max_length=4,
-            choices=EXTENSION_CHOICES
+            choices=EXTENSION_CHOICES,
             blank = True
     )
 
