@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'LaunchpadProfiles.views.home', name='home'),
     url(r'^login/$', 'LaunchpadProfiles.views.login', name='login'),
+    url(r'^userlogin/$', 'LaunchpadProfiles.views.userlogin', name='userlogin'),
     url(r'^logout/$', 'LaunchpadProfiles.views.logout', name='logout'),
     url(r'^register/$', 'LaunchpadProfiles.views.register', name='register'),
     url(r'^about/$', 'LaunchpadProfiles.views.about', name='about'),

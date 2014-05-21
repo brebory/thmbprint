@@ -5,7 +5,7 @@ from django.core.context_processors import csrf
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from profiles.models import UserProfile, Project
-
+from forms import LoginForm
 
 def home(request):
     c = {}
@@ -22,6 +22,27 @@ def login(request):
             if user.is_active:
                 auth_login(request, user)
     return redirect('home')
+
+def userlogin(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user:
+                if user.is_active:
+                    auth_login(request, user)
+                    return redirect('home')
+    else:
+        form = LoginForm()
+        
+    context = { 'form': form }
+    context.update(csrf(request))
+    return render_to_response(
+        "userlogin.jade",
+         context
+    )
 
 
 def logout(request):
@@ -50,7 +71,7 @@ def register(request):
             # Create the UserProfile for the new user
             UserProfile.objects.create(user=new_user)
 
-            return redirect('/user/dashboard/')
+            return redirect('/userlogin/')
     else:
         form = UserCreationForm()
 

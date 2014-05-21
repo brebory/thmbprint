@@ -1,0 +1,6 @@
+extends base
+block content
+  form(method="POST", action="{% url 'userlogin'%}"){% csrf_token %}
+    .row
+      {{ form.as_p }}
+      input(type="submit", value="login")
