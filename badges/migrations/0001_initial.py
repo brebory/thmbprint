@@ -71,7 +71,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image_data': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'users_set': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['profiles.UserProfile']", 'symmetrical': 'False'})
+            'users_set': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['profiles.UserProfile']", 'null': 'True', 'blank': 'True'})
         },
         u'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
@@ -80,14 +80,20 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        u'profiles.mentoruser': {
+            'Meta': {'object_name': 'MentorUser'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+        },
+        u'profiles.studentuser': {
+            'Meta': {'object_name': 'StudentUser'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
+        },
         u'profiles.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
-            'email': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '75'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
-            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '20'})
+            'mentor_profile': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'profile'", 'unique': 'True', 'null': 'True', 'to': u"orm['profiles.MentorUser']"}),
+            'student_profile': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'profile'", 'unique': 'True', 'null': 'True', 'to': u"orm['profiles.StudentUser']"}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['auth.User']", 'unique': 'True'})
         }
     }
 

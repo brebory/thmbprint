@@ -1,0 +1,7 @@
+extends base
+block content
+  .row
+    {% for badge in badges %}
+    include partials/display_badge
+    {% endfor %}
+

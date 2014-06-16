@@ -1,0 +1,18 @@
+section.ui-project-detail
+  header.ui-project-detail-header
+    h1 {{ project.name }}
+    h2 Created by: {{ project.profile.user.username }}
+    p start: {{ project.start_date }} end: {{ project.end_date }}
+    p {{ project.description }}
+  article.ui-project-detail-body
+    {% for projectitem in project.projectitem_set.all %}
+    h1.project-item-title {{ projectitem.name }}
+    p.project-item-description {{ projectitem.description }}
+    {% if projectitem.attached_file %}
+    {% if projectitem.attached_file_extension == 'jpg' %}
+    img.project-item-thumbnail(src="{{ projectitem.attached_file.url }}")
+    {% elif projectitem.attached_file_extension == 'png' %}
+    img.project-item-thumbnail(src="{{projectitem.attached_file.url }}")
+    {% endif %}
+    {% endif %}
+    {% endfor %}

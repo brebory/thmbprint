@@ -1,14 +1,25 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
 
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'LaunchpadProfiles.views.home', name='home'),
-    # url(r'^LaunchpadProfiles/', include('LaunchpadProfiles.foo.urls')),
     url(r'^$', 'LaunchpadProfiles.views.home', name='home'),
-    url(r'^user/$', include('profiles.urls')),
-    url(r'^badges/$', incldue('badges.urls')),
+    url(r'^login/$', 'LaunchpadProfiles.views.login', name='login'),
+    url(r'^userlogin/$', 'LaunchpadProfiles.views.userlogin', name='userlogin'),
+    url(r'^logout/$', 'LaunchpadProfiles.views.logout', name='logout'),
+    url(r'^register/$', 'LaunchpadProfiles.views.register', name='register'),
+    url(r'^about/$', 'LaunchpadProfiles.views.about', name='about'),
+    url(r'^explore/$', 'LaunchpadProfiles.views.explore', name='explore'),
+    url(r'^resources/$', 'LaunchpadProfiles.views.resources', name='resources'),
+    url(r'^user/', include('profiles.urls', namespace='profiles', app_name='profiles')),
+    url(r'^badges/', include('badges.urls', namespace='badges', app_name='badges')),
     url(r'^admin/', include(admin.site.urls)),
 )
+
+if not settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.contrib.staticfiles.views.serve',
+            {'document_root': settings.STATIC_ROOT}),
+    )

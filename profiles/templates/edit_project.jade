@@ -1,0 +1,13 @@
+extends base
+block content
+  .row
+    form(enctype="multipart/form-data", method="POST", action="{% url 'profiles:edit_project' project.pk %}")
+      legend Project
+      {% csrf_token %}
+      {{ form.as_p }}
+      legend Project Items
+      {% for fsform in formset %}
+      {{ fsform.as_p }}
+      {% endfor %}
+      {{ formset.management_form }}
+      input.button(type="submit", value="submit")

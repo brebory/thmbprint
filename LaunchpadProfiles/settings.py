@@ -3,7 +3,7 @@
 import os
 import dj_database_url
 
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+SITE_ROOT = os.path.dirname(__file__)
 
 DEBUG = bool(os.environ.get('LOCAL_DEV', False))
 TEMPLATE_DEBUG = DEBUG
@@ -38,6 +38,9 @@ if DEBUG:
 else:
     HOST_URL = 'launchpad-profiles.herokuapp.com'
 
+# Sets LOGIN_URL for django's auth system.
+LOGIN_URL = '/login/'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -63,7 +66,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join(SITE_ROOT, 'media')
+MEDIA_ROOT = os.path.join(SITE_ROOT, '..', 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -74,7 +77,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
+STATIC_ROOT = os.path.join(SITE_ROOT, '..', 'static')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -82,7 +85,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(SITE_ROOT, '/assets') 
+    os.path.join(SITE_ROOT, '..', 'assets'),
 )
 
 # List of finder classes that know how to find static files in
@@ -113,6 +116,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'achievements.middleware.AutoAchievementChecker',
 )
 
 ROOT_URLCONF = 'LaunchpadProfiles.urls'
@@ -124,11 +128,21 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, 'templates')
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.contrib.auth.context_processors.auth",
 )
 
 INSTALLED_APPS = (
     'south',
     'suit',
+    'storages',
     'pyjade',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -137,6 +151,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'achievements',
     'profiles',
     'badges',
 )
@@ -169,3 +184,15 @@ LOGGING = {
         },
     }
 }
+
+APPEND_SLASHES = True
+
+# Achievements configuration
+ACHIEVEMENT_CLASSES = ['profiles.profiles_achievements']
+ACHIEVMENT_MIDDLEWARE_REQUEST_METHODS = ['get', 'post', 'put', 'delete']
+
+# Amazon S3 Settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME = 'thmbprint'
