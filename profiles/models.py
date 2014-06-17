@@ -2,6 +2,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.conf import settings
+from achievements.models import Achievement
+from django.db.models.signals import post_save
 import hashlib
 import datetime
 
@@ -98,9 +100,17 @@ class MentorUser(models.Model):
             return self.profile.__unicode__()
         return "unassigned mentoruser:%s" % self.pk
 
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Project(models.Model):
     profile = models.ForeignKey(UserProfile)
     name = models.CharField(max_length=100)
+    categories = models.ManyToManyField(Category)
     description = models.TextField(blank=True)
     start_date = models.DateField(blank=True)
     end_date = models.DateField(blank=True)
@@ -112,6 +122,12 @@ class Project(models.Model):
 
     def is_owned_by(self, user):
         return user.project_set.filter(pk=self.pk).exists()
+
+
+def check_achievements(sender, instance, **kwargs):
+    for achievement in Achievement.objects.all():
+        engine.check_achievement(user = request.user, key = achievement.key) 
+post_save.connect(check_achievements, sender=Project, dispatch_uid="update_user_acheivements")
 
 class ProjectItem(models.Model):
     """
