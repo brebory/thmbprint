@@ -127,7 +127,7 @@ class Project(models.Model):
 def check_achievements(sender, instance, **kwargs):
     for achievement in Achievement.objects.all():
         engine.check_achievement(user = request.user, key = achievement.key) 
-post_save.connect(check_achievements, sender=Project, dispatch_uid="update_user_acheivements")
+post_save.connect(check_achievements, sender=Project, dispatch_uid="update_user_achievements")
 
 class ProjectItem(models.Model):
     """
