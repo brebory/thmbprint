@@ -6,8 +6,8 @@ from django.core.exceptions import PermissionDenied
 from profiles.models import UserProfile, StudentUser, MentorUser
 from profiles.models import Project, ProjectItem, Recommendation
 from profiles.forms import ProjectForm, ProjectItemFormset
-import badges
-from django.db import models 
+from badges.models import UserBadge
+from django.db import models
 from achievements.engine import engine
 from achievements.models import Achievement
 import urllib
@@ -15,14 +15,14 @@ import urllib2
 
 @login_required
 def dashboard(request):
-    myBadges = badges.models.Badge
     profile = get_object_or_404(UserProfile, user=request.user.pk)
     projects = Project.objects.filter(profile=profile)
+    user_badges = UserBadge.objects.all()
     c = {
             "profile": profile,
             "projects": projects,
             "achievements": request.user.userachievement_set.all(),
-            "badges": myBadges.objects.all()
+            "user_badges": user_badges
     }
     return render(request, 'dashboard.jade', c)
 
