@@ -1,12 +1,10 @@
 extends base
 block content
   .row
-    {% load achievement_badge %}
     h1 Achievements
-    {% for achievement in achievements %}
-    p {{ achievement.achievement.name }}
-    p {{ achievement.achievement.description }}
-    img(src="{% getbadgeurl badges achievement.achievement.key %}", alt="Achievement: {{ achievement.achievement.description }}")
+    {% for user_badge in user_badges %}
+    p {{ user_badge.badge.name }}
+    p {{ user_badge.badge.description }}
     {% endfor %}
     {% for project in projects %}
     include partials/display_project

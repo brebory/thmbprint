@@ -52,8 +52,7 @@ $em-base: 16px !default;
 
 // Maybe you want to create rems with pixels
 // $rem-base: 0.625 !default; //Set the value corresponding to body font size. In this case, you should set as: body {font-size: 62.5%;}
-// @function rem-calc($pxWidth) {
-//   @return $pxWidth / $rem-base * 1rem;
+// @function rem-calc($pxWidth) { //   @return $pxWidth / $rem-base * 1rem;
 // }
 
 // Change whether or not you include browser prefixes
@@ -63,9 +62,9 @@ $em-base: 16px !default;
 
 $default-float: left;
 
-// $body-bg: #fff;
-// $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-bg: rgb(32, 47, 73);
+$body-font-color: #DDD;
+$body-font-family: "Avenir", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -79,8 +78,8 @@ $default-float: left;
 
 // Colors
 
-// $primary-color: #2ba6cb;
-// $secondary-color: #e9e9e9;
+$primary-color: rgb(73, 203, 166);
+$secondary-color: rgb(27, 107, 233);
 // $alert-color: #c60f13;
 // $success-color: #5da423;
 
@@ -172,7 +171,7 @@ $default-float: left;
 
 // Control header font styles
 
-// $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$header-font-family: $thmbprint-header-font-family;
 // $header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;

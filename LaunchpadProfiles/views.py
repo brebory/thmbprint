@@ -107,5 +107,7 @@ def explore(request):
 
 
 def resources(request):
-    return HttpResponse("Under Construction")
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('resources.jade', c, RequestContext(request))
 
