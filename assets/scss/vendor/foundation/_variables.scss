@@ -62,7 +62,7 @@ $em-base: 16px !default;
 
 $default-float: left;
 
-$body-bg: rgb(32, 47, 73);
+$body-bg: $thmbprint-body-bg;
 $body-font-color: #DDD;
 $body-font-family: "Avenir", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -78,8 +78,8 @@ $body-font-family: "Avenir", "Helvetica Neue", "Helvetica", Helvetica, Arial, sa
 
 // Colors
 
-$primary-color: rgb(73, 203, 166);
-$secondary-color: rgb(27, 107, 233);
+// $primary-color: rgb(73, 203, 166);
+// $secondary-color: rgb(27, 107, 233);
 // $alert-color: #c60f13;
 // $success-color: #5da423;
 

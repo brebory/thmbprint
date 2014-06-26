@@ -5,3 +5,69 @@
 @import "vendor/normalize";
 @import "vendor/foundation";
 
+h1 {
+  color: white;
+}
+
+.top-bar .extra-margin {
+  margin-left: 1em;
+}
+
+.top-bar .extra-end-margin {
+  margin-right: 1em;
+}
+
+.contain-to-grid {
+  position: relative;
+  z-index: 5;
+  -webkit-box-shadow: 0 5px 0 rgb(31, 47, 73);
+}
+
+.top-bar {
+  text-transform: uppercase;
+}
+
+.ui-masthead-lead {
+  width: 24em;
+  color: $thmbprint-blue;
+  background-color: $thmbprint-light-green;
+  padding: .5em;
+  text-transform: uppercase;
+
+  position: relative;
+  margin-top: -2em;
+  margin-left: -.8em;
+  margin-bottom: -1em;
+  z-index: 5;
+}
+
+.ui-content-area {
+  background-color: $thmbprint-dark-blue;
+}
+
+.ui-article-container {
+  padding: 2em;
+  padding-top: 5em;
+}
+
+.article-intro .ui-article-header h1 {
+  font-size: 2em;
+  color: $thmbprint-blue;
+}
+
+.ui-article-body p, .ui-article-list-copy {
+  font-weight: lighter;
+}
+
+.article-selling-points {
+  background-color: $thmbprint-green;
+}
+
+.article-explanation {
+  background-color: $thmbprint-blue;
+}
+
+.ui-call-to-action-button {
+  text-transform: uppercase;
+  @include button($bg:$secondary-color, $radius:false, $full-width:false, $disabled:false, $is-input:false, $is-prefix:false)
+}

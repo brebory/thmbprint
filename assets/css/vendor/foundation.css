@@ -1,11 +1,11 @@
 /*
-Syntax error: Undefined variable: "$thmbprint-header-font-family".
-        on line 174 of assets/scss/vendor/foundation/_variables.scss
-        from line 5 of assets/scss/vendor/foundation.scss
+Syntax error: Undefined variable: "$thmbprint-body-bg".
+        on line 65 of scss/vendor/foundation/_variables.scss
+        from line 5 of scss/vendor/foundation.scss
 
 Backtrace:
-assets/scss/vendor/foundation/_variables.scss:174
-assets/scss/vendor/foundation.scss:5
+scss/vendor/foundation/_variables.scss:65
+scss/vendor/foundation.scss:5
 /Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/script/tree/variable.rb:49:in `_perform'
 /Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/script/tree/node.rb:50:in `perform'
 /Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:438:in `visit_variable'
@@ -59,4 +59,4 @@ assets/scss/vendor/foundation.scss:5
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$thmbprint-header-font-family\".\A         on line 174 of assets/scss/vendor/foundation/_variables.scss\A         from line 5 of assets/scss/vendor/foundation.scss"; }
+  content: "Syntax error: Undefined variable: \"$thmbprint-body-bg\".\A         on line 65 of scss/vendor/foundation/_variables.scss\A         from line 5 of scss/vendor/foundation.scss"; }

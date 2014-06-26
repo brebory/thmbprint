@@ -1,40 +1,39 @@
 {% load admin_urls %}
-nav.top-bar
-  ul.title-area
-    li.name
-      h1: a(href="{% url 'LaunchpadProfiles.views.home' %}") Launchpad Profiles
-    li.toggle-topbar.menu-icon: a(href="#"): span Menu
+.contain-to-grid
+  nav.top-bar
+    ul.title-area
+      li.name
+        h1: a(href="{% url 'LaunchpadProfiles.views.home' %}") Thmbprint
+      li.toggle-topbar.menu-icon: a(href="#"): span Menu
 
-  section.top-bar-section
-    ul.left
-      li.divider
-      li: a(href="{% url 'explore' %}") Explore
-      li.divider
-      li: a(href="{% url 'badges:list_badges' %}") Badges
-      li.divider
-      li: a(href="{% url 'resources' %}") Other Resources
-      li.divider
+    section.top-bar-section
+      ul.left
+        li.divider
+        li: a(href="{% url 'explore' %}") Explore
+        li.divider
+        li: a(href="{% url 'badges:list_badges' %}") Badges
+        li.divider
 
-    ul.right
-      li.divider
-      {% if user.is_authenticated %}
-      li: a(href="{% url 'profiles:dashboard' %}") Dashboard
-      li.divider
-      li: a(href="{% url 'logout' %}") Logout
-      {% else %}
-      li
-        form(method="POST", action="{% url 'login' %}")
-          {% csrf_token %}
-          .row.collapse
-            .small-5.columns
-              input(name="username", type="text", placeholder="username")
-            .small-5.columns
-              input(name="password", type="password", placeholder="password")
-            .small-2.columns
-              input.prefix(type="submit", value="Login")
-      li.divider
-      li: a(href="{% url 'register' %}") Signup
-      {% endif %}
-      li.divider
-      li: a(href="{% url 'about' %}") About
-      li.divider
+      ul.right
+        li.divider
+        {% if user.is_authenticated %}
+        li: a(href="{% url 'profiles:dashboard' %}") Dashboard
+        li.divider
+        li: a(href="{% url 'logout' %}") Logout
+        {% else %}
+        li
+          form(method="POST", action="{% url 'login' %}")
+            {% csrf_token %}
+            .row.collapse
+              .small-4.columns.extra-margin
+                input(name="username", type="text", placeholder="username")
+              .small-4.columns.extra-margin
+                input(name="password", type="password", placeholder="password")
+              .small-2.columns.extra-end-margin
+                input.prefix(type="submit", value="Login")
+        li.divider
+        li: a(href="{% url 'register' %}") Signup
+        {% endif %}
+        li.divider
+        li: a(href="{% url 'about' %}") About
+        li.divider

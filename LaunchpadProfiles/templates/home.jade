@@ -1,27 +1,62 @@
 extends base
 block content
-  section.row
-    header.ui-masthead(role="banner")
-      h1.ui-masthead-lead Professional Development for Students
-      small.ui-masthead-subhead Build the <strong>u</strong> with Thmbprint.
+ {% load staticfiles %}
+ section.row
+   header.ui-masthead(role="banner")
+     img(src="{% static 'img/banner.jpg' %}").ui-masthead-banner-image
+     h1.ui-masthead-lead A Different Kind of Online Portfolio
 
-    section.ui-content-area(role="main")
-      header.ui-article-header
-        h1 A New Career Portfolio
-      article.ui-article-body
-        p <strong>Thmbprint</strong> is an online career portfolio that promotes professional skill-set development by incorporating a digital badging system where users can socially share their achievements as they earn them.
+   section.ui-content-area(role="main")
 
-      header.ui-article-header
-        h1 How It Works
-      article.ui-article-body
-        p Thmbprint promotes skill-set development around five key areas that improve career success:
-        ul.ui-article-list
-            li.ui-article-list-element Communication
-            li.ui-article-list-element Marketing
-            li.ui-article-list-element Hard-Skills
-            li.ui-article-list-element Networking
-            li.ui-article-list-element Financial
-         p Collect, display and share your earned badges and let potential employers and friends know about your accomplishments.
+     div.ui-article-container.article-intro
+       header.ui-article-header
+         h1 Frustrated that your job history doesn't fully communicate your entire wealth of talents and skills?
+       article.ui-article-body
+         p <strong>Thmbprint</strong> is an online portfolio that promotes professional skill-set development by
+           |  incorporating a digital badging system where users can display and socially share their achievements as
+           |  they earn them.
+
+     div.ui-article-container.article-selling-points
+       header.ui-article-header
+         h1 Build your skills.
+         h1 Track your accomplishments.
+         h1 Share your expertise.
+
+     div.ui-article-container.article-explanation
+
+       header.ui-article-header
+         h1 Why Thmbprint?
+       article.ui-article-body
+         p Thmbprint promotes skill-set development around five key areas that improve career success.
+           |  Users can collect Mozilla Open Badges related to these categories to show off their growth!
+
+       ul.ui-article-list
+         .row
+           li.ui-article-list-element.large-6.columns
+             h1.ui-article-list-header Communication
+             p.ui-article-list-copy The ability to clearly express your thoughts in both oral and written form.
+
+           li.ui-article-list-element.large-6.columns
+             h1.ui-article-list-header Marketing
+             p.ui-article-list-copy The ability to promote yourself or your business to others.
+
+         .row
+           li.ui-article-list-element.large-6.columns
+             h1.ui-article-list-header Technical
+             p.ui-article-list-copy The ability to utilize tools that improve the efficiency of a business or organization.
+
+           li.ui-article-list-element.large-6.columns
+             h1.ui-article-list-header Networking
+             p.ui-article-list-copy The ability to develop and nurture professional relationships and contacts.
+
+         .row
+           li.ui-article-list-element.large-6.columns
+             h1.ui-article-list-header Financial
+             p.ui-article-list-copy The ability to raise capital or resources to further the growth of your business or
+               |  professional development.
+
+         p.supplementary-text Collect, display and share your earned badges and let potential employers and
+           |  friends know about your accomplishments.
 
       a.ui-call-to-action-button Get Started
 

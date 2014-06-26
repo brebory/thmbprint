@@ -1,3 +1,18 @@
 // Settings and customization variables for Thmbprint
 $thmbprint-header-font-family: "Avenir", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-$topbar-bg-color: rgba(255, 255, 255, 0.8);
+$thmbprint-body-bg: rgb(245, 245, 245);
+$thmbprint-blue: rgb(20, 80, 175);
+$thmbprint-dark-blue: rgb(31, 47, 73);
+$thmbprint-light-green: rgb(173, 233, 215);
+$thmbprint-green: rgb(0, 203, 145);
+$topbar-bg-color: darken($thmbprint-body-bg, 5%);
+$topbar-link-bg-hover: $thmbprint-dark-blue;
+$primary-color: $thmbprint-blue;
+$secondary-color: $thmbprint-green;
+$thmbprint-header-bg: #e8e8e8;
+$topbar-dropdown-bg: $thmbprint-header-bg;
+$topbar-link-color: $primary-color;
+
+ul, ol, li {
+  list-style-type: none;
+}
