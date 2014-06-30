@@ -1,0 +1,9 @@
+extends base
+block content
+  .row
+    form(enctype="multipart/form-data", method="POST", action="{% url 'badges:create_badge' %}")
+      {% csrf_token %}
+      legend Badge
+      {{ form.as_p }}
+      input.button(type="submit", value="submit")
+

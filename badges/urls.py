@@ -6,4 +6,5 @@ urlpatterns = patterns('badges.views',
         url(r'(?P<badge_id>\d+)\.json$', 'badge_json', name='badge_json'),
         url(r'assertion/(?P<badge_id>\d+)/user/(?P<user_id>\d+)/$', 'assertion_detail', name='assertion_detail'),
         url(r'organization.json', 'organization_info', name='organization_info'),
-)
+        url(r'badges/new', 'create_badge', name='create_badge'),
+        )
