@@ -2,6 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.conf import settings
+from achievements.engine import engine
 from achievements.models import Achievement
 from django.db.models.signals import post_save
 import hashlib
@@ -126,7 +127,10 @@ class Project(models.Model):
 
 def check_achievements(sender, instance, **kwargs):
     for achievement in Achievement.objects.all():
-        engine.check_achievement(user = request.user, key = achievement.key) 
+        engine.check_achievement(
+                user = instance.profile.user,
+                key = achievement.key
+        )
 post_save.connect(check_achievements, sender=Project, dispatch_uid="update_user_achievements")
 
 class ProjectItem(models.Model):
