@@ -38,9 +38,6 @@
   font-weight: lighter;
   font-style: italic;
   src: url("../font/AvenirLTStd-LightOblique.otf"); }
-ul, ol, li {
-  list-style-type: none; }
-
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
@@ -1632,64 +1629,12 @@ blockquote p {
 
   h4 {
     font-size: 1.4375em; } }
-=======
->>>>>>> Stashed changes
 /*
-Syntax error: File to import not found or unreadable: vendor/normalize.
-              Load paths:
-                /Users/broberto/Documents/personal/development/git-repositories/thmbprint/assets (DEPRECATED)
-                /Users/broberto/Documents/personal/development/git-repositories/thmbprint/assets/scss
-        on line 5 of scss/app.scss
-
-1: @charset "UTF-8";
-2: @import "_fonts";
-3: @import "_settings";
-4: @import "_variables";
-5: @import "vendor/normalize";
-6: @import "vendor/foundation";
-
-Backtrace:
-scss/app.scss:5
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/import_node.rb:66:in `rescue in import'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/import_node.rb:45:in `import'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/import_node.rb:28:in `imported_file'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/import_node.rb:37:in `css_import?'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:283:in `visit_import'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/stack.rb:79:in `block in with_base'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/stack.rb:121:in `with_frame'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/stack.rb:79:in `with_base'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:152:in `visit'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:52:in `map'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:160:in `visit_children'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:180:in `visit_root'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:151:in `visit'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/root_node.rb:36:in `css_tree'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/tree/root_node.rb:20:in `render'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/engine.rb:274:in `render'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:414:in `update_stylesheet'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:186:in `each'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:393:in `on_file_changed'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/lib/sass/plugin/compiler.rb:248:in `block in watch'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/vendor/listen/lib/listen/listener.rb:252:in `call'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:252:in `call'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:252:in `report_changes'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:321:in `poll_changed_directories'
-/Users/broberto/.rvm/gems/ruby-1.9.3-p385/gems/sass-3.3.3/vendor/listen/lib/listen/adapter.rb:297:in `block in start_poller'
+ * Print styles.
+ *
+ * Inlined to avoid required HTTP connection: www.phpied.com/delay-loading-your-print-css/
+ * Credit to Paul Irish and HTML5 Boilerplate (html5boilerplate.com)
 */
-<<<<<<< Updated upstream
 .print-only {
   display: none !important; }
 
@@ -5159,6 +5104,13 @@ a.th {
     max-width: 500px; }
   .f-dropdown.large {
     max-width: 800px; }
+
+body {
+  background-image: url("gfx/halftone.png");
+  background-repeat: repeat; }
+
+ul, ol, li {
+  list-style-type: none; }
 
 h1 {
   color: white; }

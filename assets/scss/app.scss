@@ -5,6 +5,15 @@
 @import "vendor/normalize";
 @import "vendor/foundation";
 
+body {
+  background-image: url('gfx/halftone.png');
+  background-repeat: repeat;
+}
+
+ul, ol, li {
+  list-style-type: none;
+}
+
 h1 {
   color: white;
 }
