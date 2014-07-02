@@ -24,15 +24,18 @@ VALID_EXTENSIONS = (
 
 def generate_upload_path(instance, filename):
     # Generate filename by md5 hashing previous filename and the current time
-    filehash = hashlib.md5()
-    filehash.update(instance.name.replace(" ", "-"))
-    filehash.update(str(datetime.datetime.now()))
-    return '/'.join(
-            ['content', 
-             instance.project.profile.user.username,
-             filehash.hexdigest() + "." +
-             instance.attached_file_extension]
-    )
+    if instance.attached_file:
+        filehash = hashlib.md5()
+        filehash.update(instance.name.replace(" ", "-"))
+        filehash.update(str(datetime.datetime.now()))
+        return '/'.join(
+                ['content', 
+                 instance.project.profile.user.username,
+                 filehash.hexdigest() + "." +
+                 instance.attached_file_extension]
+        )
+    else:
+        return "/"
 
 def validate_file_extension(file_object):
     extension = file_object.name.split(".")[-1]
@@ -156,23 +159,9 @@ class ProjectItem(models.Model):
             null = True
     )
 
-    attached_file_extension = models.CharField(
-            max_length=4,
-            choices=EXTENSION_CHOICES,
-            blank = True
-    )
-
-    def save(self, *args, **kwargs):
-        """
-        Automatically gets the attached_file_extension from the passed in
-        file's name. Removes the need for the user to specify the attached file
-        extension in the ModelForm.
-
-        Overrides the default models.Model save function.
-        """
-
-        attached_file_extension = attached_file.name.split('.')[-1]
-        super(ProjectItem, self).save(*args, **kwargs)
+    @property
+    def attached_file_extension(self):
+        return self.attached_file.name.split('.')[-1]
 
     def __unicode__(self):
         return self.name
