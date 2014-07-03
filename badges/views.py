@@ -1,9 +1,12 @@
 import json
-from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response, get_object_or_404
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse, Http404, HttpResponseForbidden
+from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
 from badges.models import Badge, UserBadge
+from badges.forms import BadgeForm
 
 def list_badges(request):
     """
@@ -22,6 +25,22 @@ def badge_detail(request, badge_id):
     c = { 'badge': badge }
     c.update(csrf(request))
     return render_to_response('badge_detail.jade', c, RequestContext(request))
+
+@user_passes_test(lambda u: u.is_superuser)
+def create_badge(request):
+    if request.method == 'POST':
+        form = BadgeForm(request.POST)
+        if form.is_valid():
+            badge = form.save(commit = False)
+            badge.save()
+            return redirect('badges:list_badges')
+    else:
+        form = BadgeForm()
+    c = {
+            "form": form
+    }
+    return render(request, "create_badge.jade", c)
+
 
 def badge_json(request, badge_id):
     """
