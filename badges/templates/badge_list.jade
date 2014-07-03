@@ -1,6 +1,10 @@
 extends base
 block content
   .row
+    {% if request.user.is_superuser %}
+    a(class='button', href="{% url 'badges:create_badge' %}") Create New Badge
+    {% endif %}
+  .row
     {% for badge in badges %}
     include partials/display_badge
     {% endfor %}

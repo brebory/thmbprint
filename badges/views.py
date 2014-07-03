@@ -1,5 +1,5 @@
 import json
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, Http404, HttpResponseForbidden
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect
@@ -26,6 +26,7 @@ def badge_detail(request, badge_id):
     c.update(csrf(request))
     return render_to_response('badge_detail.jade', c, RequestContext(request))
 
+@user_passes_test(lambda u: u.is_superuser)
 def create_badge(request):
     if request.method == 'POST':
         form = BadgeForm(request.POST)
