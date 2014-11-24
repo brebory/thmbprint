@@ -22,7 +22,8 @@ class Badge(models.Model):
     """
     name = models.CharField(max_length=100)
     description = models.TextField()
-    image_data = models.ImageField(upload_to='badges')
+    image_data = models.ImageField(upload_to='badges', blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
     achievement_key = models.CharField(max_length=50, default='dummy_achievement')
 
     def get_absolute_url(self):

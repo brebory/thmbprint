@@ -1,0 +1,6 @@
+{% extends "admin:admin/base.html" %}
+
+{% block object-tools %}
+{{block.super}}
+<iframe frameborder="0" scrolling="no" width="960" height="540" src="https://credly.com/badge-builder/embed/{{temp_token}}">
+</iframe>

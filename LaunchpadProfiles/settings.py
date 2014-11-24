@@ -51,7 +51,7 @@ TIME_ZONE = 'America/Chicago'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 1
+SITE_ID = 3
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -196,3 +196,9 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
 AWS_STORAGE_BUCKET_NAME = 'thmbprint'
+
+# Credly Settings
+CREDLY_API_KEY = '17389cff3a71986e766751d31950f14c'
+CREDLY_SECRET_KEY =\
+'IojCUYeFvOPzb+iFJ5ftr4pkpVIi/MCj+f7bHhmGlvpe43LE4rV4QU8Agg2t0XXEvqSIcBKJ4LDFPbOmLS1sYpLvCmk/ilWFOvM1/BKhXA+GR6DVMeNJy5uJ6IrynG2NxMtYVQQ6jKlpIvcPOCgFdFM5gS85q8hG+MG3rc+YQ7E='
+

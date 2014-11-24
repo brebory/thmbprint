@@ -1,0 +1,6 @@
+{% extends "admin:admin/change_form.html" %}
+
+{% block after_field_sets %}
+{{block.super}}
+<iframe frameborder="0" scrolling="no" width="960" height="540" src="https://credly.com/badge-builder/embed/{{temp_token}}">
+</iframe>
